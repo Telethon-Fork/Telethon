@@ -126,8 +126,14 @@ class Message(ChatGetter, SenderGetter, TLObject):
         forwards (`int`):
             The number of times this message has been forwarded.
 
+        noforwards (`bool`):
+            Whether Message is send with no forward restriction.
+
         replies (`int`):
             The number of times another message has replied to this message.
+
+        reactions (`MessageReactions`):
+            Reactions attached to the message.
 
         edit_date (`datetime`):
             The date when this message was last edited.
@@ -195,10 +201,13 @@ class Message(ChatGetter, SenderGetter, TLObject):
             pinned: Optional[bool] = None,
             restriction_reason: Optional[types.TypeRestrictionReason] = None,
             forwards: Optional[int] = None,
+            noforwards: bool = None,
+            reactions=None,
             replies: Optional[types.TypeMessageReplies] = None,
 
             # For MessageAction (mandatory)
-            action: Optional[types.TypeMessageAction] = None
+            action: Optional[types.TypeMessageAction] = None,
+            *args, **kwargs
     ):
         # Common properties to messages, then to service (in the order they're defined in the `.tl`)
         self.out = bool(out)
@@ -230,6 +239,8 @@ class Message(ChatGetter, SenderGetter, TLObject):
         self.restriction_reason = restriction_reason
         self.ttl_period = ttl_period
         self.action = action
+        self.reactions = reactions
+        self.noforwards = noforwards
 
         # Convenient storage for custom functions
         # TODO This is becoming a bit of bloat
