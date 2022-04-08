@@ -194,11 +194,11 @@ def main(argv):
         setup(
             name='Telethon',
             version=version,
-            description="Full-featured Telegram client library for Python 3",
+            description="Fork of Full-featured Telegram client (Telethon)",
             long_description=long_description,
 
-            url='https://github.com/LonamiWebs/Telethon',
-            download_url='https://github.com/LonamiWebs/Telethon/releases',
+            url='https://github.com/Telethon-Fork/Telethon',
+            download_url='https://github.com/Telethon-Fork/Telethon/releases',
 
             author='Lonami Exo',
             author_email='totufals@hotmail.com',
@@ -230,7 +230,7 @@ def main(argv):
             ],
             keywords='telegram api chat client library messaging mtproto',
             packages=find_packages(exclude=[
-                'telethon_*', 'tests*'
+                'telethon_*', 'tests*', "scripts"
             ]),
             install_requires=['pyaes', 'rsa'],
             extras_require={

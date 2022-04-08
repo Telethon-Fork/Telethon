@@ -1,0 +1,29 @@
+name: "Update tl"
+
+on:
+  schedule:
+    - cron:  '0 0 * * *' # Every Night
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+       - uses: actions/checkout@v2
+       - name: Setup Python
+         uses: actions/setup-python@v1
+         with:
+          python-version: 3.9
+       - name: Install requirements
+         run: pip3 install requests
+       - name: RUN tl update
+         run: python3 scripts/update.py
+       - uses: stefanzweifel/git-auto-commit-action@v4
+         continue-on-error: true
+         with:
+          commit_message: 'Auto: Update tl'
+          repository: .
+          commit_user_name: New-dev0
+          commit_user_email: Newdev0@outlook.com
+          commit_author: Devesh Pal <Newdev0@outlook.com>
+          
