@@ -73,7 +73,7 @@ class InlineBuilder:
     # noinspection PyIncorrectDocstring
     async def article(
             self, title, description=None,
-            *, url=None, thumb=None, content=None,
+            *, url=None, type="article", thumb=None, content=None,
             id=None, text=None, parse_mode=(), link_preview=True,
             geo=None, period=60, contact=None, game=False, buttons=None
     ):
@@ -128,7 +128,7 @@ class InlineBuilder:
         # voice, document, location, venue, contact, game
         result = types.InputBotInlineResult(
             id=id or '',
-            type='article',
+            type=type,
             send_message=await self._message(
                 text=text, parse_mode=parse_mode, link_preview=link_preview,
                 geo=geo, period=period,
